@@ -1,7 +1,13 @@
 
 # coding: utf-8
 
-# In[121]:
+# In[14]:
+
+
+x
+
+
+# In[54]:
 
 
 import numpy as np
@@ -15,7 +21,7 @@ for i in range(0,400):
     cards= set().union(cards,w.columns.tolist())
 karty = dict.fromkeys(cards,0)
 zero_data = np.zeros(shape=(400,len(cards)))
-dane = pd.DataFrame(zero_data,columns = karty.keys())
+dane = pd.DataFrame(zero_data,columns = sorted(list(karty.keys())))
 for i in range(0,400):
     for key in data.iloc[i,0]:
         ww = dane[key]
@@ -23,10 +29,41 @@ for i in range(0,400):
         dane[key] = ww
 dane['deckName'] = data['deckName']
 dane['Hero'] =data['hero']
+games= pd.read_csv("C:/users/user/Downloads/training_games.csv",delimiter=';')
+# dodalem do training_games.csv nagłowki  !
+
+def list_to_string(list):
+    return list[0]
+# decName sa jednoelemtnowymi listami teraz to naprawiam
+dane['deckName']=dane['deckName'].apply(list_to_string)
+dane['Hero']=dane['Hero'].apply(list_to_string)
+#i ustaiwam deckName na index
+dane =dane.set_index('deckName',drop=False)
 
 
-# In[122]:
+# In[56]:
 
 
-dane.head()
+set_size =299680
+
+
+# In[ ]:
+
+
+zero_data = np.zeros(shape=(set_size,len(cards)))
+training_set=pd.DataFrame(zero_data,columns = sorted(list(karty.keys())))
+for i in range(0,set_size):
+        training_set.loc[i] = dane.loc[games.loc[i]['Talia1']][0:330] - dane.loc[games.loc[i]['Talia2']][0:330]
+
+
+# In[64]:
+
+
+
+
+
+# In[67]:
+
+
+training_set.loc[0]
 
