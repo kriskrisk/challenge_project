@@ -48,7 +48,7 @@ x = dane.iloc[0].append(dane.iloc[1])
 
 zero_data = np.zeros(shape=(0,2*dane.shape[1]))
 training_set = pd.DataFrame(zero_data,columns = x.index)
-training_set = pd.concat( [dane.loc[games.loc[i]["Talia1"]].append(dane.loc[games.loc[i]["Talia2"]]) for i in range(0,games.shape[0])],axis=1,ignore_index = True)
+training_set = pd.concat([dane.loc[games.loc[i]["Talia1"]].append(dane.loc[games.loc[i]["Talia2"]]) for i in range(0,games.shape[0])],axis=1,ignore_index = True)
 
 
 # In[ ]:
@@ -72,11 +72,11 @@ X_train,X_test,y_train,y_test = t(training_set,y,test_size = 0.10)
 from sklearn.ensemble import RandomForestClassifier as RF
 from sklearn.model_selection import GridSearchCV as Grid
 
-forest_parameters = {'criterion':['gini','entropy'],'max_depth': [10,20,5]}
+forest_parameters = {'criterion': ['gini', 'entropy'], 'max_depth': [10,  20,5]}
 rf = RF()
-grid = Grid(estimator =rf,param_grid = forest_parameters)
+grid = Grid(estimator=rf, param_grid=forest_parameters)
 # to uzywa 3 krotne jwaldiacji krzyzowej do prownania wszytkich kombinacji parametrow
-grid.fit(X_train,y_train)
+grid.fit(X_train, y_train)
 
 
 # In[ ]:
@@ -86,18 +86,20 @@ from sklearn.ensemble import GradientBoostingClassifier as XGB
 from sklearn.naive_bayes import MultinomialNB as NB
 from sklearn.manifold import TSNE
 from sklearn.svm import SVC
-from sklearn.neural_network import MLPClassifier as M
-model_list = [SVC(),SVC(kernel = 'poly'),SVC(kernel = 'sigmoid'),M(activation = 'logistic',hidden_layer_sizes=[100,80] ),M(activation = 'logistic',hidden_layer_sizes=[50,20] ),TSNE(),NB()]
+from sklearn.neural_network import MLPClassifier as MLP
+model_list = [SVC(),
+              SVC(kernel='poly'),
+              SVC(kernel='sigmoid'),
+              MLP(activation='logistic', hidden_layer_sizes=[100, 80]),
+              MLP(activation='logistic', hidden_layer_sizes=[50, 20]),
+              TSNE(),
+              NB()]
 
 
 for model in model_list:
-    model.fit(X_train,y_train)
-    print(model.score(X_test,y_test))
-
-
-# In[ ]:
-
+    model.fit(X_train, y_train)
+    print(model.score(X_test, y_test))
 
 X_d_2 = model_list[4].transform(X_train)
-# TSNE sluzy do radykalnej redukcji wymiaru - w tym przypadk ud odwoch
+# TSNE sluzy do radykalnej redukcji wymiaru - w tym przypadku do dwóch.
 
