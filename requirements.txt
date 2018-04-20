@@ -3,3 +3,5 @@ matplotlib
 sympy
 pandas
 numpy
+scikit-learn
+scipy
