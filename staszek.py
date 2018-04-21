@@ -31,7 +31,7 @@ dane = pd.concat([dane, d_hero], axis=1)
 dane = dane.drop('Hero',axis =1)
 
 # deckName juz jes tw indeksie wiec wyrzucam z kolumny
-dane=dane.drop("deckName.1",axis=1)
+dane = dane.drop("deckName.1",axis=1)
 
 
 # In[2]:
