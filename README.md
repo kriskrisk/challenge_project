@@ -30,9 +30,11 @@ b2- data set contains dummies for two bots<br />
 * Nets and Conv Nets on two decks < -23 or to long to comput
 
 ### Nets:
-First traind on 100 epochs to pisck best configuration, then trined longer.
+First traind on 100-300 epochs to pick best configuration, then trined longer.
 
 * Conv Net on one deck (128 conv, 1000 dense, relu activation, sigmoid output, SGD) = -8.4
-* Conv Net on one deck (128 conv, 1000 dense, relu softsign, sigmoid output, SGD) = -8.3
-* Conv Net on one deck (128 conv, 1000 dense, relu softplus, sigmoid output, SGD) = -52
-* Conv Net on one deck (128 conv, 1000 dense, relu softsign, sigmoid output, SGD, with classes for y) = -43
+* Conv Net on one deck (128 conv, 1000 dense, softsign activation, sigmoid output, SGD) = -8.3
+* Conv Net on one deck (128 conv, 1000 dense, softplus activation, sigmoid output, SGD) = -52
+* Conv Net on one deck (192 conv, 1000 dense, softsign activation, sigmoid output, SGD, with single class for y) = -43
+* Conv Net on one deck (192 conv, 1000 dense, relu activation, softmax output, SGD, with two classes for y) = -40
+* Conv Net on one deck (192 conv, 1000 dense, relu activation, sigmoid output, RMSprop) = 
