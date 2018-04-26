@@ -34,3 +34,5 @@ First traind on 100 epochs to pisck best configuration, then trined longer.
 
 * Conv Net on one deck (128 conv, 1000 dense, relu activation, sigmoid output, SGD) = -8.4
 * Conv Net on one deck (128 conv, 1000 dense, relu softsign, sigmoid output, SGD) = -8.3
+* Conv Net on one deck (128 conv, 1000 dense, relu softplus, sigmoid output, SGD) = -52
+* Conv Net on one deck (128 conv, 1000 dense, relu softsign, sigmoid output, SGD, with classes for y) = -43
