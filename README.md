@@ -28,4 +28,8 @@ b2- data set contains dummies for two bots<br />
 * Naive bayes, decision trees < -25
 * Knn - to long to compute
 * Nets and Conv Nets on two decks < -23 or to long to comput
-* Conv Net on one deck (128 conv, 100 dense, relu activation, sigmoid output, SGD) = -8.4
+
+### Nets:
+First traind on 100 epochs to pisck best configuration, then trined longer.
+
+* Conv Net on one deck (128 conv, 1000 dense, relu activation, sigmoid output, SGD) = -8.4
