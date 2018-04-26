@@ -33,3 +33,4 @@ b2- data set contains dummies for two bots<br />
 First traind on 100 epochs to pisck best configuration, then trined longer.
 
 * Conv Net on one deck (128 conv, 1000 dense, relu activation, sigmoid output, SGD) = -8.4
+* Conv Net on one deck (128 conv, 1000 dense, relu softsign, sigmoid output, SGD) = -8.3
