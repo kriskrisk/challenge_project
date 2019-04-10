@@ -1,6 +1,6 @@
-# challenge_project
+# Challenge Project
 
-SUS assignment 2.<br />
+A project for the Machine Learning course @ MIMUW.<br />
 [Project description here](https://knowledgepit.fedcsis.org/contest/view.php?id=123)
 
 ## Content of repo:
