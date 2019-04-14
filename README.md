@@ -1,40 +1,37 @@
 # Challenge Project
 
 A project for the Machine Learning course @ MIMUW.<br />
-[Project description here](https://knowledgepit.fedcsis.org/contest/view.php?id=123)
+Project was made as a solution to machine learning challenge: 
+[link](https://knowledgepit.fedcsis.org/contest/view.php?id=123).<br />
+In brief, the task is to estimate win rates for decks of 
+[Hearthstone](https://en.wikipedia.org/wiki/Hearthstone) cards.
 
-## Content of repo:
+## Data
 
-### Data:
+There are two types of data, first concerning decks and second concerning the course of games played using this decks.
+Decks are represented as sets of cards. Each card has its properties:
+* mana cost
+* rarity (common, rare, legendary)
+* type (enchantment, hero, minion)
+* class (druid, hunter, mage)
+* mechanic - special ability (add to hand, battlecry, bomb)
+* race
+* and others...
 
-h - data set contains dummes for heros<br />
-b2- data set contains dummies for two bots<br />
+Second part of data set contains all the information about games: every possible action with a card, 
+every attack, use of special ability or spell. Of course there is information about winner of a game as well.
+Games were played between four bots. 
 
-* X_test.csv - 200 rows - h
-* X_train.csv - 1000 rows in each representation of two decks - h, b2
-* y_dummies_train.csv - 1000 rows in each dummie representation of result of games from X_train, each result is a pair (1, 0) or (0, 1)
-* y_train.csv - same as above, result is not a pair but a number
-* prob.csv - win rate for all 400 training decks
-* decks.csv - vactorized representation of all 400 training decks with mean win rate for every deck and win rate for every deck played by every bot - h
+## Problem
 
-### Files:
+Problem statement is simple: given a deck of Hearthstone cards predict overall win rate of this deck.
 
-* requirements.txt - set of all libraries that need to be installed to run programs from repo
-* simple_approach.ipynb - first algorythms and a lot of trash
-* neutral_networks.ipynb
+## My solution
 
-## Results:
-
-* Naive bayes, decision trees < -25
-* Knn - to long to compute
-* Nets and Conv Nets on two decks < -23 or to long to comput
-
-### Nets:
-First traind on 100-300 epochs to pick best configuration, then trined longer.
-
-* Conv Net on one deck (128 conv, 1000 dense, relu activation, sigmoid output, SGD) = -8.4
-* Conv Net on one deck (128 conv, 1000 dense, softsign activation, sigmoid output, SGD) = -8.3
-* Conv Net on one deck (128 conv, 1000 dense, softplus activation, sigmoid output, SGD) = -52
-* Conv Net on one deck (192 conv, 1000 dense, softsign activation, sigmoid output, SGD, with single class for y) = -43
-* Conv Net on one deck (192 conv, 1000 dense, relu activation, softmax output, SGD, with two classes for y) = -40
-* Conv Net on one deck (192 conv, 1000 dense, relu activation, sigmoid output, RMSprop) = 
+I've tried two approaches: naive Bayes and neutral networks.
+During data analysis I discovered interesting property of this data.
+There are few groups of decks. Every deck from data set belongs to one of this groups.
+Moreover, every deck from a group is very similar to other decks from the same group and very different from decks
+from other groups. Finally, decks belonging to the same group have similar win rates.
+This allows to look at this problem as clustering problem (at least to boost results).
+As a result I've achieved much better results using CNN than NB.  
